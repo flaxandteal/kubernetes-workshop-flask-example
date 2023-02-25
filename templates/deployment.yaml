@@ -33,17 +33,24 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: COURSE_TEST
+              value: "1"
+            {{- range $key, $val := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $val }}
+            {{- end}}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 5000
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /alembic_instruction
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /alembic_instruction
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

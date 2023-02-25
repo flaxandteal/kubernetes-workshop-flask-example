@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: flaxandteal/python-course-021-conical-continued
+  repository: ghcr.io/flaxandteal/kubernetes-workshop-flask-example-app:latest
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -38,7 +38,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 5000
 
 ingress:
   enabled: false
@@ -82,3 +82,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+env:
+  SQLALCHEMY_DATABASE_URI: "sqlite:////tmp/test.db"
