@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/flaxandteal/kubernetes-workshop-flask-example-app:latest
+  repository: ghcr.io/flaxandteal/kubernetes-workshop-flask-example-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
